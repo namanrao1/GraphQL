@@ -1,39 +1,73 @@
+
+import type { Link } from '@prisma/client'
+import type { GraphQLContext } from './context'
+
+// Define the Link type
 import { makeExecutableSchema } from "@graphql-tools/schema";
 
-// Corrected typeDefs
-const typeDefs = `
-  type Link {
-    id: String
-    url: String
-    description: String
-  }
+// Define the Link type for GraphQL schema
+interface GraphQLLink {
+  id: string;
+  description: string;
+  url: string;
+}
 
+// Define the GraphQL schema
+const typeDefs = /* GraphQL */ `
   type Query {
-    info: String
-    feed: [Link]
+    info: String!
+    feed: [GraphQLLink!]!
+  }
+ 
+  type Mutation {
+    postLink(url: String!, description: String!): GraphQLLink!
+  }
+ 
+  type GraphQLLink {
+    id: ID!
+    description: String!
+    url: String!
   }
 `;
 
-const links = [
+// Initialize an array of links
+const links: GraphQLLink[] = [
   {
     id: 'link-0',
-    url: 'https://graphql-yoga.com',
-    description: 'The easiest way of setting up a GraphQL server'
+    url: 'www.howtographql.com',
+    description: 'Fullstack tutorial for GraphQL'
   }
 ];
 
+// Define resolvers
 const resolvers = {
   Query: {
-    info: () => 'This is the API of a Hackernews Clone',
-    feed: () => links
+    info: () => `This is the API of a Hackernews Clone`,
+    feed: (parent: unknown, args: {}, context: GraphQLContext) => context.prisma.link.findMany()
   },
-  Link: {
-    id: (parent: any) => parent.id,
-    description: (parent: any) => parent.description,
-    url: (parent: any) => parent.url
+  GraphQLLink: {
+    id: (parent: Link) => parent.id,
+    description: (parent: Link) => parent.description,
+    url: (parent: Link) => parent.url
+  },
+  Mutation: {
+    async postLink(
+      parent: unknown,
+      args: { description: string; url: string },
+      context: GraphQLContext
+    ) {
+      const newLink = await context.prisma.link.create({
+        data: {
+          url: args.url,
+          description: args.description
+        }
+      })
+      return newLink
+    }
   }
-};
+}
 
+// Create the schema
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers,
