@@ -1,0 +1,41 @@
+A graphQL project frontend+backend......
+
+https://www.howtographql.com/
+GraphiQL like postman tool
+
+
+
+GSOC
+Hackathon(SIH)
+Leetcode codeforces
+Internship
+
+GraphQL
+
+still no idea what is graphql???
+just i know that it is better than rest
+
+what the hell is apollo??
+how it is related to GraphQL??
+
+Apollo is a platform for building a unified graph, a communication layer 
+that helps you manage the flow of data between your application clients (such as web and native apps) and your back-end services.
+
+GraphQL on frontend (client side of the application)
+
+
+Frontend:
+
+React: Library for building user interfaces
+Apollo Client 3.2: Production-ready, caching GraphQL client
+
+
+Backend:
+
+Apollo Server 2.18: Fully-featured GraphQL Server with focus on easy setup, performance and great developer experience
+Prisma: Open-source database toolkit that makes it simple to work with relational databases
+
+
+
+What the hell are subscriptions???
+

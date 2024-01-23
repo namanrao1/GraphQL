@@ -1,0 +1,247 @@
+accept input from the command line
+______________________________________________________
+
+var http = require('http');
+var url = require('url');
+var fs = require('fs');
+
+http.createServer(function (req, res) {
+  var q = url.parse(req.url, true);
+  var filename = "." + q.pathname;
+  fs.readFile(filename, function(err, data) {
+    if (err) {
+      res.writeHead(404, {'Content-Type': 'text/html'});
+      return res.end("404 Not Found");
+    } 
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    return res.end();
+  });
+}).listen(8080);
+
+_______________________________________________________________
+
+try and catch 
+
+const anAsyncTask = async () => {
+ try {
+ const user = await getUser()
+ const cart = await getCart(user)
+
+ return cart
+ } catch (error) {
+ console.error(error)
+ } finally {
+ await cleanUp()
+ }
+}
+
+______________________________________________________________________
+
+There are four fundamental strategies to report errors in Node.js:
+
+try…catch blocks
+Callbacks
+Promises
+Event emitters
+
+node js events on w3 schools
+
+formidable module for working with files...
+
+default modules vs es modules
+
+npm vs npx 
+npx without installing u can do a lot of things..
+
+
+
+u can define scripts in package.json
+
+{
+  "name": "your-package",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "echo": "echo hello!"
+  }
+}
+
+npm run echo
+
+_________________________________________________
+
+npm workspacess
+
+creating packages npm tooo goood
+
+
+
+$ node inspect myscript.js
+
+
+Stack Trace
+The stack trace is used to trace the active stack frames at a particular instance during the execution of a program. 
+
+
+
+_________________________________________________________________
+
+event loop
+
+call stack---->web api----->Queue->>>>>Call stack
+
+Event emitter important*****
+
+
+fs modules
+
+path modules
+
+What to learn from node js docs???
+
+http
+fs
+os
+path
+process
+query strings
+stream
+
+
+glob regarding searching...
+
+npm init -y      json package banane ke liye
+___________________________________________________________
+
+command line 
+
+
+prompts
+process modules
+
+
+commander js modules can help u create urr own command line inerface.
+
+
+process.exit
+process.kill
+process.abort
+process.on
+
+
+Use dotenv to create ur own environment variables
+
+
+
+
+_________________________________________________________________
+
+all about apis https://aws.amazon.com/what-is/api/
+
+Template engine helps us to create an HTML template with minimal code. Also, it can inject data into HTML template at client side and produce the final HTML.
+
+
+EJS : helps u to embed javascript into your html.
+
+PUG marko sajane ke liye sab laski walae kaam   (PUG sabse best hai mostly har jagah pe wahi use ho rha hai)
+
+axios::promise based http client node (XMLhttprequest)
+best for mkaing api calls
+
+________________________________________________________________________
+
+Express
+
+routing paths
+
+routing parameters
+
+Middleware important
+
+Next JS>>>>>>Express JS(Fastify bekaar hai only performance bhadane ke liye)
+
+
+bcrypt important for hashing
+
+passport js
+
+
+__________________________________________________________
+
+Databases
+
+document database(like JSON data)
+1)Mongoose package is a library of MongoDB with MongoDB
+2)Prisma with MySql+Nodejs
+3)native drivers(list of drivers by MongoDB)
+
+
+
+Testing Cypress is best
+
+end to end testing vs Component testing
+
+
+Set up the application state.
+Take an action.
+Make an assertion about the resulting application state.
+
+
+Logging
+-Winston
+
+Keep node application constantly running...
+
+pm2 package best thing in the world
+
+
+
+Monitoring tools with active testing:
+
+Sematext
+
+
+Common built in nodejs modules:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+________________________________________________________
+remaining links:
+
+https://nodejs.org/docs/latest/api/cli.html
+https://nodejs.org/api/globals.html#global
+https://nodejs.org/api/modules.html#modules-commonjs-modules
+https://www.w3schools.com/nodejs/nodejs_mysql.asp
+https://nodejs.org/api/debugger.html
+
+
+best website for prCTICALS:
+https://www.digitalocean.com/community/tutorials/how-to-use-ejs-to-template-your-node-application
+
+
+
+Linked IN 
+Resume
+
+
+
+
